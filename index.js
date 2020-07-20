@@ -4,6 +4,8 @@ var app = express(),
 var toDoRoutes = require('./routes/todos');
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname+"/public"));
+app.use(express.static(__dirname+"/views"));
 app.use(bodyParser.urlencoded({extended: true}));
 
 app.listen(process.env.PORT || 3000, function(){
@@ -13,5 +15,5 @@ app.listen(process.env.PORT || 3000, function(){
 app.use('/api/todos', toDoRoutes);
 
 app.get("/", function(req, res){
-	res.send("Hello!");
+	res.sendFile("index.html");
 })
